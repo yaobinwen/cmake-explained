@@ -160,6 +160,34 @@ A property defines what characteristic the current entity has. For example, one 
 
 Note that properties of the same name can exist in different scopes. For example, the property name `INCLUDE_DIRECTORIES` appear in the scopes of `Directories`, `Targets`, and `Source Files`, but they are three **different** properties. Therefore, when you read the document and see a command updates a property, you must figure out which property of which scope the command updates.
 
+## Appendix A: Pitfalls
+
+When reading the help document, note whether a command requires a `target` or a `file`, or something else. For example, the help document of the command `install` says:
+
+```
+install(TARGETS <target>... [...])
+install(IMPORTED_RUNTIME_ARTIFACTS <target>... [...])
+install({FILES | PROGRAMS} <file>... [...])
+install(DIRECTORY <dir>... [...])
+install(SCRIPT <file> [...])
+install(CODE <code> [...])
+install(EXPORT <export-name> [...])
+install(RUNTIME_DEPENDENCY_SET <set-name> [...])
+```
+
+Note that `install` accepts different types of arguments for different forms. When it is a `target`, you can specify an earlier defined target and CMake will find it automatically for you; when it is a `file`, you need to specify a file path. If you try to use a `target`, you will get unexpected results.
+
+For example, if you have defined a target `main_not_using`:
+
+```
+add_executable(
+    main_not_using
+    "main-not-using.cpp"
+)
+```
+
+and you want to install it, using `install(PROGRAMS main_not_using TYPE BIN)` will result in the error "No such file or directory" because `main_not_using` is not interpreted as a target but a relative path to the file. You need to use `install(PROGRAMS $<TARGET_FILE:main_not_using> TYPE BIN)`.
+
 ## References
 
 - [1] [`add_executable()`](https://cmake.org/cmake/help/v3.21/command/add_executable.html)
