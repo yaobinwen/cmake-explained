@@ -10,7 +10,18 @@ This tutorial is still a **work in progress**.
 
 This tutorial uses [semantic versioning](https://semver.org/) and is currently `0.1.0`. See [`CHANGELOG.md`](./CHANGELOG.md) for more details in each version.
 
-### 1.3 How CMake Helps with Building?
+### 1.3 Prerequisites
+
+In order to understand CMake more easily and better, the users are strongly recommended to learn the following topics:
+- Basic object-oriented programming (OOP) knowledge, including:
+  - What is an object?
+  - What is a property of an object?
+  - What is a method (i.e., action) of an object?
+- Understand that reusing code is a fundamental software engineering principle. More specifically:
+  - Common code is extracted into functions or modules for reusability.
+  - A programming language typically provides some "include" or "import" (or both) mechanism to make the reusable code available to the current development.
+
+### 1.4 How CMake Helps with Building?
 
 I'm using CMake 3.21.3.
 
