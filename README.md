@@ -8,7 +8,7 @@ This tutorial is still a **work in progress**.
 
 ### 1.2 Current Version
 
-This tutorial uses [semantic versioning](https://semver.org/) and is currently `0.1.0`. See [`CHANGELOG.md`](./CHANGELOG.md) for more details in each version.
+This tutorial uses [semantic versioning](https://semver.org/) and is currently `0.2.0`. See [`CHANGELOG.md`](./CHANGELOG.md) for more details in each version.
 
 ### 1.3 Prerequisites
 
