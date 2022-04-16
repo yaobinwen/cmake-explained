@@ -4,31 +4,30 @@
 
 ### 1.1 Prerequisites
 
-In order to understand CMake more easily and better, the users are strongly recommended to learn the following topics:
-- Basic object-oriented programming (OOP) knowledge, including:
-  - What is an object?
-  - What is a property of an object?
-  - What is a method (i.e., action) of an object?
-- Understand that reusing code is a fundamental software engineering principle. More specifically:
-  - Common code is extracted into functions or modules for reusability.
-  - A programming language typically provides some "include" or "import" (or both) mechanism to make the reusable code available to the current development.
+In order to understand CMake more easily and better, the users are strongly recommended to do the following things before learning CMake.
 
-### 1.2 How CMake Helps with Building?
+Firstly, get some basic understanding of [the `make` build tool](https://en.wikipedia.org/wiki/Make_(software)). Although CMake and `make` are essentially different, I feel CMake gets a lot of ideas from `make` so knowing `make` will help learning CMake. Specifically, learn what "targets" are, what "rules" are, and how to specify the dependencies between different targets in order to build the targets successfully.
 
-I'm using CMake 3.21.3.
+Secondly, get some basic understanding of object-oriented programming (OOP). CMake is implemented in C++, so some concepts of CMake are quite similar to the concept of "classes" which have "properties" to define what they are and also "functions" to define what they can do. One example is the "target" in CMake, which we will explain later.
 
-The typical steps of building a library or a program are:
-- Install pre-requisites of building the program.
-- Detect the current build host's various system features (i.e., system introspection).
-- Find the external libraries or programs that the target program depends on.
-- Specify the build configuration (e.g., `Debug` vs `Release`).
-- Build the internal libraries.
-- Build the executable programs (linking statically or dynamically).
-- Test the built artifacts to make sure things are built correctly.
-- Create an installer.
-- Distribute the installer so others can install it.
+Finally, view CMake as a scripting language. This not only helps you to understand why CMake can define variables and functions but also helps to understand why CMake modules (see [cmake-modules(7)](https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html)) are part of CMake.
 
-The various CMake features are used in different steps.
+### 1.2 The Problems that CMake Solves
+
+CMake has many features because it aims to solving many problems. Most of the features revolve around building and testing the code, but CMake can also pack up the built artifacts and distribute them. This section lists the problems that CMake handles. Knowing these problems before diving into CMake details can provide you a view of the "whole forest" of CMake. Later, whenever you are learning a specific CMake feature, you will always know where you are in this forest without getting lost.
+
+The problems are labeled with the indices such as "P1", "P2", and "P3". The indices make references easier.
+
+- **P1: Detect the current build host system's various features.** Many projects conditionally compile the code according to the presence of a particular feature. For example, if the build host system provides native threading library, the code will directly use the native threading library; otherwise, it may use its own threading library.
+- **P2: Build a library or an executable that may link to other libraries.** This problem can be divided into smaller problems:
+  - **P2-1: How to define the rules that build the library or the executable.**
+  - **P2-2: How to effectively manage the rules.** If a library is the used in multiple places, we need to make sure the library is linked with the correct parameters everywhere. This becomes more challenging when the project and the library keep growing more complex. CMake provides the feature "transitive usage requirements" to solve this problem.
+  - **P2-3: How to find a library if it comes from an external package.**
+- **P3: Specify the build configuration (e.g., `Debug` vs `Release`).**
+- **P4: Test the built artifacts.**
+- **P5: Create an installer so others can install the package.**
+
+The subsequent sections will discuss CMake features and refer back here to show what problems a feature solves.
 
 ## 2. Target
 

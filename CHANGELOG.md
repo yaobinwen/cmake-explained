@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2022-04-16
+### Changed
+- Updated the section "1. Overview" to provide the readers a better overview of the entire tutorial.
+
 ## [0.3.0] - 2021-12-17
 ### Added
 - Add the section "Appendix A: Pitfalls".
