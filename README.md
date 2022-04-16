@@ -2,7 +2,7 @@
 
 ## Status
 
-This tutorial is a **work in progress**, currently at the version `0.4.0`. See [`CHANGELOG.md`](./CHANGELOG.md) for more details in each version.
+This tutorial is a **work in progress**. See [`CHANGELOG.md`](./CHANGELOG.md) for the current version as well as more details in each version.
 
 ## What is this and for whom?
 
